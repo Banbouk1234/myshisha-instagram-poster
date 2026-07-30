@@ -11,7 +11,7 @@ import json
 import time
 import requests
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 
 # ── Credentials from GitHub Secrets ──────────────────────────
 ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN", "")
@@ -28,7 +28,7 @@ LOG_FILE     = STORIES_DIR / "post.log"
 
 
 def log(msg):
-    ts = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+    ts = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
     line = f"[{ts}] {msg}"
     print(line, flush=True)
     with open(LOG_FILE, "a") as f:
@@ -55,41 +55,24 @@ def get_next_image(posted):
         if f.suffix in exts and f.name not in posted
     ])
     if not images:
-        # All posted — reset cycle
         log("All images posted. Resetting cycle.")
         images = sorted([f for f in STORIES_DIR.iterdir() if f.suffix in exts])
-        return images[0] if images else None
-    return images[0]
+    return images[0] if images else None
 
 
-def upload_to_catbox(image_path):
-    log(f"Uploading {image_path.name} to catbox.moe ...")
+def create_container(image_path):
+    log(f"Uploading {image_path.name} directly to Instagram ...")
+    mime = "image/jpeg" if image_path.suffix.lower() in (".jpg", ".jpeg") else "image/png"
     with open(image_path, "rb") as f:
         resp = requests.post(
-            "https://catbox.moe/user/api.php",
-            data={"reqtype": "fileupload"},
-            files={"fileToUpload": (image_path.name, f)},
-            timeout=60
+            f"{BASE_URL}/{IG_USER_ID}/media",
+            data={
+                "media_type":   "STORIES",
+                "access_token": ACCESS_TOKEN,
+            },
+            files={"source": (image_path.name, f, mime)},
+            timeout=120
         )
-    resp.raise_for_status()
-    url = resp.text.strip()
-    if not url.startswith("https://"):
-        raise RuntimeError(f"catbox upload failed: {resp.text}")
-    log(f"Uploaded to: {url}")
-    return url
-
-
-def create_container(image_url):
-    log("Creating Instagram media container ...")
-    resp = requests.post(
-        f"{BASE_URL}/{IG_USER_ID}/media",
-        data={
-            "image_url":  image_url,
-            "media_type": "STORIES",
-            "access_token": ACCESS_TOKEN,
-        },
-        timeout=30
-    )
     data = resp.json()
     if "error" in data:
         raise RuntimeError(f"Container creation error: {data['error']}")
@@ -99,7 +82,7 @@ def create_container(image_url):
 
 
 def wait_ready(container_id, max_wait=120):
-    log(f"Waiting for container {container_id} to be FINISHED ...")
+    log(f"Waiting for container to be FINISHED ...")
     deadline = time.time() + max_wait
     while time.time() < deadline:
         resp = requests.get(
@@ -153,10 +136,9 @@ def main():
     log(f"Next image: {image.name}")
 
     try:
-        image_url   = upload_to_catbox(image)
-        container   = create_container(image_url)
+        container = create_container(image)
         wait_ready(container)
-        media_id    = publish(container)
+        media_id  = publish(container)
 
         posted.append(image.name)
         save_posted(posted)
