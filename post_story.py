@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Instagram Auto-Poster for @myshishaecigeu
-Posts images from the repo root to Instagram Stories.
+Posts images from the repo to Instagram Stories.
 Runs via GitHub Actions at 10 AM and 8 PM UAE time daily.
 """
 
@@ -13,11 +13,12 @@ import requests
 from pathlib import Path
 from datetime import datetime, timezone
 
-# ── Credentials from GitHub Secrets ──────────────────────────
+# ── Credentials from GitHub Secrets (no defaults for secrets) ─
 ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN", "")
 APP_ID       = os.environ.get("APP_ID",       "1064773792747496")
-APP_SECRET   = os.environ.get("APP_SECRET",   "615d7a1a3cb33bc8529a787ad8fff139")
+APP_SECRET   = os.environ.get("APP_SECRET",   "")
 IG_USER_ID   = os.environ.get("IG_USER_ID",   "17841448557709921")
+GITHUB_REPO  = os.environ.get("GITHUB_REPOSITORY", "Banbouk1234/myshisha-instagram-poster")
 API_VER      = "v25.0"
 BASE_URL     = f"https://graph.facebook.com/{API_VER}"
 # ─────────────────────────────────────────────────────────────
@@ -60,67 +61,16 @@ def get_next_image(posted):
     return images[0] if images else None
 
 
-def upload_image(image_path):
-    """Try multiple public image hosts until one works."""
-
-    # 1. Try 0x0.st
-    try:
-        log("Trying 0x0.st ...")
-        with open(image_path, "rb") as f:
-            resp = requests.post(
-                "https://0x0.st",
-                files={"file": (image_path.name, f)},
-                timeout=30
-            )
-        url = resp.text.strip()
-        if resp.ok and url.startswith("https://"):
-            log(f"Uploaded to 0x0.st: {url}")
-            return url
-        log(f"0x0.st failed: {resp.status_code} {resp.text[:80]}")
-    except Exception as e:
-        log(f"0x0.st error: {e}")
-
-    # 2. Try litterbox.catbox.moe (temporary, different from catbox)
-    try:
-        log("Trying litterbox.catbox.moe ...")
-        with open(image_path, "rb") as f:
-            resp = requests.post(
-                "https://litterbox.catbox.moe/resources/internals/api.php",
-                data={"reqtype": "fileupload", "time": "24h"},
-                files={"fileToUpload": (image_path.name, f)},
-                timeout=60
-            )
-        url = resp.text.strip()
-        if resp.ok and url.startswith("https://"):
-            log(f"Uploaded to litterbox: {url}")
-            return url
-        log(f"litterbox failed: {resp.status_code} {resp.text[:80]}")
-    except Exception as e:
-        log(f"litterbox error: {e}")
-
-    # 3. Try file.io
-    try:
-        log("Trying file.io ...")
-        with open(image_path, "rb") as f:
-            resp = requests.post(
-                "https://file.io/?expires=1d",
-                files={"file": (image_path.name, f)},
-                timeout=30
-            )
-        data = resp.json()
-        if data.get("success") and data.get("link"):
-            url = data["link"]
-            log(f"Uploaded to file.io: {url}")
-            return url
-        log(f"file.io failed: {data}")
-    except Exception as e:
-        log(f"file.io error: {e}")
-
-    raise RuntimeError("All image hosts failed — cannot get a public URL")
+def get_public_url(image_path):
+    """Return a raw.githubusercontent.com URL for the image.
+    Works because this repo is public."""
+    filename = image_path.name
+    return f"https://raw.githubusercontent.com/{GITHUB_REPO}/main/{filename}"
 
 
 def create_container(image_url):
-    log(f"Creating Instagram Stories container with image_url ...")
+    log(f"Creating Instagram Stories container ...")
+    log(f"  image_url: {image_url}")
     resp = requests.post(
         f"{BASE_URL}/{IG_USER_ID}/media",
         data={
@@ -180,7 +130,7 @@ def main():
         sys.exit(1)
 
     log(f"IG_USER_ID: {IG_USER_ID}")
-    log(f"STORIES_DIR: {STORIES_DIR}")
+    log(f"GITHUB_REPO: {GITHUB_REPO}")
 
     posted = load_posted()
     log(f"Already posted: {len(posted)} images")
@@ -193,7 +143,7 @@ def main():
     log(f"Next image: {image.name}")
 
     try:
-        image_url  = upload_image(image)
+        image_url  = get_public_url(image)
         container  = create_container(image_url)
         wait_ready(container)
         media_id   = publish(container)
