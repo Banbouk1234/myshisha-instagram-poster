@@ -1,10 +1,12 @@
 name: Post Instagram Story
 
+
 on:
   schedule:
-    - cron: '0 6 * * *'    # 10:00 AM UAE (UTC+4)
-    - cron: '0 16 * * *'   # 8:00 PM UAE (UTC+4)
+    - cron: '0 6 * * *'→ Runs at 06:00    # 10:00 AM UAE (UTC+4)
+    - cron: '0 16 * * *'→ Runs at 16:00   # 8:00 PM UAE (UTC+4)
   workflow_dispatch:
+
 
 jobs:
   post:
@@ -27,6 +29,7 @@ jobs:
         run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions Bot"
-          git add stories/.posted.json stories/post.log 2>/dev/null || true
+          git add .posted.json post.log 2>/dev/null || true
           git diff --staged --quiet || git commit -m "Update post tracker [skip ci]"
           git push || true
+
