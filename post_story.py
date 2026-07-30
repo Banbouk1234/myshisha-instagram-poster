@@ -60,19 +60,76 @@ def get_next_image(posted):
     return images[0] if images else None
 
 
-def create_container(image_path):
-    log(f"Uploading {image_path.name} directly to Instagram ...")
-    mime = "image/jpeg" if image_path.suffix.lower() in (".jpg", ".jpeg") else "image/png"
-    with open(image_path, "rb") as f:
-        resp = requests.post(
-            f"{BASE_URL}/{IG_USER_ID}/media",
-            data={
-                "media_type":   "STORIES",
-                "access_token": ACCESS_TOKEN,
-            },
-            files={"source": (image_path.name, f, mime)},
-            timeout=120
-        )
+def upload_image(image_path):
+    """Try multiple public image hosts until one works."""
+
+    # 1. Try 0x0.st
+    try:
+        log("Trying 0x0.st ...")
+        with open(image_path, "rb") as f:
+            resp = requests.post(
+                "https://0x0.st",
+                files={"file": (image_path.name, f)},
+                timeout=30
+            )
+        url = resp.text.strip()
+        if resp.ok and url.startswith("https://"):
+            log(f"Uploaded to 0x0.st: {url}")
+            return url
+        log(f"0x0.st failed: {resp.status_code} {resp.text[:80]}")
+    except Exception as e:
+        log(f"0x0.st error: {e}")
+
+    # 2. Try litterbox.catbox.moe (temporary, different from catbox)
+    try:
+        log("Trying litterbox.catbox.moe ...")
+        with open(image_path, "rb") as f:
+            resp = requests.post(
+                "https://litterbox.catbox.moe/resources/internals/api.php",
+                data={"reqtype": "fileupload", "time": "24h"},
+                files={"fileToUpload": (image_path.name, f)},
+                timeout=60
+            )
+        url = resp.text.strip()
+        if resp.ok and url.startswith("https://"):
+            log(f"Uploaded to litterbox: {url}")
+            return url
+        log(f"litterbox failed: {resp.status_code} {resp.text[:80]}")
+    except Exception as e:
+        log(f"litterbox error: {e}")
+
+    # 3. Try file.io
+    try:
+        log("Trying file.io ...")
+        with open(image_path, "rb") as f:
+            resp = requests.post(
+                "https://file.io/?expires=1d",
+                files={"file": (image_path.name, f)},
+                timeout=30
+            )
+        data = resp.json()
+        if data.get("success") and data.get("link"):
+            url = data["link"]
+            log(f"Uploaded to file.io: {url}")
+            return url
+        log(f"file.io failed: {data}")
+    except Exception as e:
+        log(f"file.io error: {e}")
+
+    raise RuntimeError("All image hosts failed — cannot get a public URL")
+
+
+def create_container(image_url):
+    log(f"Creating Instagram Stories container with image_url ...")
+    resp = requests.post(
+        f"{BASE_URL}/{IG_USER_ID}/media",
+        data={
+            "image_url":    image_url,
+            "media_type":   "STORIES",
+            "access_token": ACCESS_TOKEN,
+        },
+        timeout=30
+    )
     data = resp.json()
     if "error" in data:
         raise RuntimeError(f"Container creation error: {data['error']}")
@@ -82,7 +139,7 @@ def create_container(image_path):
 
 
 def wait_ready(container_id, max_wait=120):
-    log(f"Waiting for container to be FINISHED ...")
+    log("Waiting for container to be FINISHED ...")
     deadline = time.time() + max_wait
     while time.time() < deadline:
         resp = requests.get(
@@ -136,9 +193,10 @@ def main():
     log(f"Next image: {image.name}")
 
     try:
-        container = create_container(image)
+        image_url  = upload_image(image)
+        container  = create_container(image_url)
         wait_ready(container)
-        media_id  = publish(container)
+        media_id   = publish(container)
 
         posted.append(image.name)
         save_posted(posted)
