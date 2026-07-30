@@ -17,12 +17,22 @@ jobs:
         with:
           python-version: '3.13'
       - run: pip install requests
-      - run: python post_story.py
+      - name: Run post script
+        run: python post_story.py
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           APP_ID:       ${{ secrets.APP_ID }}
           APP_SECRET:   ${{ secrets.APP_SECRET }}
           IG_USER_ID:   ${{ secrets.IG_USER_ID }}
+      - name: Show log
+        if: always()
+        run: |
+          echo "=== post.log ==="
+          cat post.log 2>/dev/null || echo "(no post.log found)"
+          echo "=== .posted.json ==="
+          cat .posted.json 2>/dev/null || echo "(no .posted.json found)"
+          echo "=== files in dir ==="
+          ls -la | head -20
       - name: Save posted tracker
         run: |
           git config user.email "actions@github.com"
