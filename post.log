@@ -617,3 +617,17 @@
 [2026-08-21 16:24:15 UTC] Publishing story ...
 [2026-08-21 16:24:18 UTC] Published! Media ID: 18083187584309542
 [2026-08-21 16:24:18 UTC] Success! Posted 9.png as story (media_id=18083187584309542)
+[2026-08-22 06:20:13 UTC] === Instagram Story Poster started ===
+[2026-08-22 06:20:13 UTC] IG_USER_ID: 17841448557709921
+[2026-08-22 06:20:13 UTC] GITHUB_REPO: Banbouk1234/myshisha-instagram-poster
+[2026-08-22 06:20:13 UTC] Already posted: 46 images
+[2026-08-22 06:20:13 UTC] Next image: Lemon Mint 1 .PNG
+[2026-08-22 06:20:13 UTC] Creating Instagram Stories container ...
+[2026-08-22 06:20:13 UTC]   image_url: https://raw.githubusercontent.com/Banbouk1234/myshisha-instagram-poster/main/Lemon Mint 1 .PNG
+[2026-08-22 06:20:17 UTC] Container created: 18098059382618591
+[2026-08-22 06:20:17 UTC] Waiting for container to be FINISHED ...
+[2026-08-22 06:20:18 UTC]   status: IN_PROGRESS
+[2026-08-22 06:20:24 UTC]   status: FINISHED
+[2026-08-22 06:20:24 UTC] Publishing story ...
+[2026-08-22 06:20:27 UTC] Published! Media ID: 18088890869289906
+[2026-08-22 06:20:27 UTC] Success! Posted Lemon Mint 1 .PNG as story (media_id=18088890869289906)
