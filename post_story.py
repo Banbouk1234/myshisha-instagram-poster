@@ -57,6 +57,7 @@ def get_next_image(posted):
     ])
     if not images:
         log("All images posted. Resetting cycle.")
+        posted.clear()
         images = sorted([f for f in STORIES_DIR.iterdir() if f.suffix in exts])
     return images[0] if images else None
 
