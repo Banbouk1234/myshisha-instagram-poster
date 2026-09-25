@@ -1631,3 +1631,17 @@
 [2026-09-25 10:45:52 UTC] Publishing story ...
 [2026-09-25 10:45:56 UTC] Published! Media ID: 18144073936599993
 [2026-09-25 10:45:56 UTC] Success! Posted Cherry Candy 2 .png as story (media_id=18144073936599993)
+[2026-09-25 19:44:52 UTC] === Instagram Story Poster started ===
+[2026-09-25 19:44:52 UTC] IG_USER_ID: 17841448557709921
+[2026-09-25 19:44:52 UTC] GITHUB_REPO: Banbouk1234/myshisha-instagram-poster
+[2026-09-25 19:44:52 UTC] Already posted: 49 images
+[2026-09-25 19:44:52 UTC] Next image: Lemon Mint 1 .PNG
+[2026-09-25 19:44:52 UTC] Creating Instagram Stories container ...
+[2026-09-25 19:44:52 UTC]   image_url: https://raw.githubusercontent.com/Banbouk1234/myshisha-instagram-poster/main/Lemon Mint 1 .PNG
+[2026-09-25 19:44:58 UTC] Container created: 18103009253618591
+[2026-09-25 19:44:58 UTC] Waiting for container to be FINISHED ...
+[2026-09-25 19:44:58 UTC]   status: IN_PROGRESS
+[2026-09-25 19:45:04 UTC]   status: FINISHED
+[2026-09-25 19:45:04 UTC] Publishing story ...
+[2026-09-25 19:45:07 UTC] Published! Media ID: 18107736272236663
+[2026-09-25 19:45:07 UTC] Success! Posted Lemon Mint 1 .PNG as story (media_id=18107736272236663)
