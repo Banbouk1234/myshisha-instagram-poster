@@ -1645,3 +1645,16 @@
 [2026-09-25 19:45:04 UTC] Publishing story ...
 [2026-09-25 19:45:07 UTC] Published! Media ID: 18107736272236663
 [2026-09-25 19:45:07 UTC] Success! Posted Lemon Mint 1 .PNG as story (media_id=18107736272236663)
+[2026-09-26 10:28:12 UTC] === Instagram Story Poster started ===
+[2026-09-26 10:28:12 UTC] IG_USER_ID: 17841448557709921
+[2026-09-26 10:28:12 UTC] GITHUB_REPO: Banbouk1234/myshisha-instagram-poster
+[2026-09-26 10:28:12 UTC] Already posted: 50 images
+[2026-09-26 10:28:12 UTC] Next image: Magic Love.PNG
+[2026-09-26 10:28:12 UTC] Creating Instagram Stories container ...
+[2026-09-26 10:28:12 UTC]   image_url: https://raw.githubusercontent.com/Banbouk1234/myshisha-instagram-poster/main/Magic Love.PNG
+[2026-09-26 10:28:17 UTC] Container created: 18103098056618591
+[2026-09-26 10:28:17 UTC] Waiting for container to be FINISHED ...
+[2026-09-26 10:28:17 UTC]   status: FINISHED
+[2026-09-26 10:28:17 UTC] Publishing story ...
+[2026-09-26 10:28:22 UTC] Published! Media ID: 18133946326659631
+[2026-09-26 10:28:22 UTC] Success! Posted Magic Love.PNG as story (media_id=18133946326659631)
