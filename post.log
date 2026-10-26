@@ -2446,3 +2446,17 @@
 [2026-10-25 18:39:24 UTC] Publishing story ...
 [2026-10-25 18:39:28 UTC] Published! Media ID: 18641204389061567
 [2026-10-25 18:39:28 UTC] Success! Posted Strawberry Mango 4.PNG as story (media_id=18641204389061567)
+[2026-10-26 11:48:18 UTC] === Instagram Story Poster started ===
+[2026-10-26 11:48:18 UTC] IG_USER_ID: 17841448557709921
+[2026-10-26 11:48:18 UTC] GITHUB_REPO: Banbouk1234/myshisha-instagram-poster
+[2026-10-26 11:48:18 UTC] Already posted: 52 images
+[2026-10-26 11:48:18 UTC] Next image: Strawberry Mango.PNG
+[2026-10-26 11:48:18 UTC] Creating Instagram Stories container ...
+[2026-10-26 11:48:18 UTC]   image_url: https://raw.githubusercontent.com/Banbouk1234/myshisha-instagram-poster/main/Strawberry Mango.PNG
+[2026-10-26 11:48:23 UTC] Container created: 18107747576618591
+[2026-10-26 11:48:23 UTC] Waiting for container to be FINISHED ...
+[2026-10-26 11:48:23 UTC]   status: IN_PROGRESS
+[2026-10-26 11:48:29 UTC]   status: FINISHED
+[2026-10-26 11:48:29 UTC] Publishing story ...
+[2026-10-26 11:48:32 UTC] Published! Media ID: 18124803295918538
+[2026-10-26 11:48:32 UTC] Success! Posted Strawberry Mango.PNG as story (media_id=18124803295918538)
