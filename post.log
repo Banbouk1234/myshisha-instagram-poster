@@ -2870,3 +2870,17 @@
 [2026-11-10 21:36:01 UTC] Publishing story ...
 [2026-11-10 21:36:04 UTC] Published! Media ID: 17893808556617244
 [2026-11-10 21:36:04 UTC] Success! Posted 50.png as story (media_id=17893808556617244)
+[2026-11-11 13:08:36 UTC] === Instagram Story Poster started ===
+[2026-11-11 13:08:36 UTC] IG_USER_ID: 17841448557709921
+[2026-11-11 13:08:36 UTC] GITHUB_REPO: Banbouk1234/myshisha-instagram-poster
+[2026-11-11 13:08:36 UTC] Already posted: 26 images
+[2026-11-11 13:08:36 UTC] Next image: 51.png
+[2026-11-11 13:08:36 UTC] Creating Instagram Stories container ...
+[2026-11-11 13:08:36 UTC]   image_url: https://raw.githubusercontent.com/Banbouk1234/myshisha-instagram-poster/main/51.png
+[2026-11-11 13:08:41 UTC] Container created: 18110232230618591
+[2026-11-11 13:08:41 UTC] Waiting for container to be FINISHED ...
+[2026-11-11 13:08:42 UTC]   status: IN_PROGRESS
+[2026-11-11 13:08:47 UTC]   status: FINISHED
+[2026-11-11 13:08:47 UTC] Publishing story ...
+[2026-11-11 13:08:50 UTC] Published! Media ID: 18001818986823527
+[2026-11-11 13:08:50 UTC] Success! Posted 51.png as story (media_id=18001818986823527)
