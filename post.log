@@ -3212,3 +3212,17 @@
 [2026-11-24 02:42:36 UTC] Publishing story ...
 [2026-11-24 02:42:41 UTC] Published! Media ID: 18062420294654582
 [2026-11-24 02:42:41 UTC] Success! Posted Magic Love.PNG as story (media_id=18062420294654582)
+[2026-11-24 16:40:17 UTC] === Instagram Story Poster started ===
+[2026-11-24 16:40:17 UTC] IG_USER_ID: 17841448557709921
+[2026-11-24 16:40:17 UTC] GITHUB_REPO: Banbouk1234/myshisha-instagram-poster
+[2026-11-24 16:40:17 UTC] Already posted: 51 images
+[2026-11-24 16:40:17 UTC] Next image: Strawberry Mango 4.PNG
+[2026-11-24 16:40:17 UTC] Creating Instagram Stories container ...
+[2026-11-24 16:40:17 UTC]   image_url: https://raw.githubusercontent.com/Banbouk1234/myshisha-instagram-poster/main/Strawberry Mango 4.PNG
+[2026-11-24 16:40:21 UTC] Container created: 18112105058618591
+[2026-11-24 16:40:21 UTC] Waiting for container to be FINISHED ...
+[2026-11-24 16:40:21 UTC]   status: IN_PROGRESS
+[2026-11-24 16:40:27 UTC]   status: FINISHED
+[2026-11-24 16:40:27 UTC] Publishing story ...
+[2026-11-24 16:40:30 UTC] Published! Media ID: 18155198887505897
+[2026-11-24 16:40:30 UTC] Success! Posted Strawberry Mango 4.PNG as story (media_id=18155198887505897)
