@@ -3280,3 +3280,17 @@
 [2026-11-26 15:58:27 UTC] Publishing story ...
 [2026-11-26 15:58:31 UTC] Published! Media ID: 18153397255564569
 [2026-11-26 15:58:31 UTC] Success! Posted Strawberry Watermelon.PNG as story (media_id=18153397255564569)
+[2026-11-27 00:13:14 UTC] === Instagram Story Poster started ===
+[2026-11-27 00:13:14 UTC] IG_USER_ID: 17841448557709921
+[2026-11-27 00:13:14 UTC] GITHUB_REPO: Banbouk1234/myshisha-instagram-poster
+[2026-11-27 00:13:14 UTC] Already posted: 56 images
+[2026-11-27 00:13:14 UTC] Next image: Watermelon Ice 3.PNG
+[2026-11-27 00:13:14 UTC] Creating Instagram Stories container ...
+[2026-11-27 00:13:14 UTC]   image_url: https://raw.githubusercontent.com/Banbouk1234/myshisha-instagram-poster/main/Watermelon Ice 3.PNG
+[2026-11-27 00:13:19 UTC] Container created: 18112386479618591
+[2026-11-27 00:13:19 UTC] Waiting for container to be FINISHED ...
+[2026-11-27 00:13:20 UTC]   status: IN_PROGRESS
+[2026-11-27 00:13:25 UTC]   status: FINISHED
+[2026-11-27 00:13:25 UTC] Publishing story ...
+[2026-11-27 00:13:30 UTC] Published! Media ID: 18029048645864995
+[2026-11-27 00:13:30 UTC] Success! Posted Watermelon Ice 3.PNG as story (media_id=18029048645864995)
